@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [pokemons, setPokemons] = useState([])
+  const [pokemons, setPokemons] = useState<any[]>([])
   useEffect(() => {
     //first
     axios.get('https://pokeapi.co/api/v2/pokemon/').then(
