@@ -1,8 +1,12 @@
 import { createContext } from 'react';
 
 export interface ShoppingContextProps {
-    isOpen: Boolean,
-    cart: []
+    state:{    
+        isOpen: boolean,
+        cart: [],
+    }
+    addProduct: () => void
+    
 }
 
 export const ShoppingContext = createContext({} as ShoppingContextProps)

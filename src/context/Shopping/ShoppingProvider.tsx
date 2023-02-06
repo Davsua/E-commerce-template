@@ -1,23 +1,17 @@
+import useInitialState from '../../hooks/useInitialState'
 import { ShoppingContext } from './ShoppingContext'
 
-export interface ShoppingState {
-    isOpen: Boolean,
-    cart: []
 
-}
 interface ShoppingProviderProps {
     children: JSX.Element | JSX.Element[] 
 }
-const INITIAL_STATE: ShoppingState = {
-    isOpen: false,
-    cart:[]
-}
+
 
 export const ShoppingProvider = ({children} : ShoppingProviderProps) =>{
-
+const initialState = useInitialState()
 
     return(
-        <ShoppingContext.Provider value={INITIAL_STATE}>
+        <ShoppingContext.Provider value={initialState}>
             {children}
         </ShoppingContext.Provider>
     )
