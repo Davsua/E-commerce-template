@@ -1,11 +1,14 @@
 import { createContext } from 'react';
+import { Product } from '../../interfaces';
 
 export interface ShoppingContextProps {
     state:{    
-        isOpen: boolean,
-        cart: [],
+        isOpenOrder: boolean,
+        cart: Product[],
     }
-    addProduct: () => void
+    addProduct: (payload: Product) => void,
+    deleteProduct: (payload: Product) => void,
+    toogleOrder: () => void,
     
 }
 
