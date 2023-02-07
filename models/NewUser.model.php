@@ -1,16 +1,16 @@
 <?php
 # @Class/Method/Model -> New User || (Register && Login)
-class new_user
+class NewUser
 {
     # They are set to private, so they cannot be accessed without a method
     private $username;
     private $email;
-    private $tel_number;
+    private $phoneNumber;
     private $password;
-    private $encrypted_password; # We encrypt the password for more security =D
-    private $storage = "rute db-JSON";
-    private $stored_users; # we need this variable with all the users to validate that the registrations are not repeated.
-    private $new_user; # type->Array || This variable is the one that we will send to the json.
+    private $encryptedPassword; # We encrypt the password for more security =D
+    private $storage = "../db/users.json";
+    private $storedUsed; # we need this variable with all the users to validate that the registrations are not repeated.
+    private $newUser; # type->Array || This variable is the one that we will send to the json.
     public $error = array();
     public $success;
 
@@ -18,7 +18,7 @@ class new_user
     public function __construct()
     {
         # Get dates file JSON
-        $this->stored_users = json_decode(file_get_contents($this->storage), true);
+        $this->storedUsed = json_decode(file_get_contents($this->storage), true);
 
         #This line checks that the variables are not empty, if it manages to pass insert to the user -- Change
         #if($this->check_field_values())
@@ -26,38 +26,38 @@ class new_user
     }
 
     # @Check Values Register
-    private function check_values_register($username, $email, $tel_number, $password)
+    private function checkValuesRegister($username, $email, $phoneNumber, $password)
     {
         # Asign values
         $this->username = filter_var(trim($username), FILTER_SANITIZE_STRING);
         $this->email = filter_var(trim($email), FILTER_SANITIZE_EMAIL);
-        $this->tel_number = trim($tel_number); # Este no lo supe "desinfectar" ='|
+        $this->phoneNumber = trim($phoneNumber); # Este no lo supe "desinfectar" ='|
         $this->password = filter_var(trim($password), FILTER_SANITIZE_STRING);
-        $this->encrypted_password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->encryptedPassword = password_hash($this->password, PASSWORD_DEFAULT);
 
         # Create Object new user
-        $this->new_user = [
+        $this->newUser = [
             "username" => $this->username,
             "email" => $this->email,
-            "tel_number" => $this->tel_number,
-            "password" => $this->encrypted_password,
+            "phoneNumber" => $this->phoneNumber,
+            "password" => $this->encryptedPassword,
         ];
     }
     # @Check Values Login
-    private function check_values_login($username, $password)
+    private function checkValuesLogin($username, $password)
     {
         $this->username=$username;
         $this->password=$password;
-        $this->stored_users=json_decode(file_get_contents($this->storage), true); # json_decode -> parse()
+        $this->storedUsed=json_decode(file_get_contents($this->storage), true); # json_decode -> parse()
     }
 
     # @We check that the variables are not empty.
-    private function check_field_values()
+    private function checkFieldValues()
     {
         # check if they are empty
         if (empty($this->username)) array_push($this->error, "Username is empty");
         if (empty($this->email)) array_push($this->error, "Email is empty");
-        if (empty($this->tel_number)) array_push($this->error, "Telephone number is empty");
+        if (empty($this->phoneNumber)) array_push($this->error, "Telephone number is empty");
         if (empty($this->password)) array_push($this->error, "Password is empty");
         # Finish vacio.
 
@@ -71,8 +71,8 @@ class new_user
         if (preg_match("/^[a-zA-Z]+$/", $this->email)) array_push($this->error, "Email error: only letters allowed");
 
         # phone number
-        if (!preg_match("/(^\+)/", $this->tel_number)) array_push($this->error, "Phone number error: Does not match");
-        if (preg_match("/[0-9]{,8}/", $this->tel_number)) array_push($this->error, "Phone number error: Amount");
+        if (!preg_match("/(^\+)/", $this->phoneNumber)) array_push($this->error, "Phone number error: Does not match");
+        if (preg_match("/[0-9]{,8}/", $this->phoneNumber)) array_push($this->error, "Phone number error: Amount");
 
         # password
         if (!preg_match("/.{6,}/", $this->password)) array_push($this->error, "Password error: Does not meet the minimum length (6 characters)" . strlen($this->password));//
@@ -85,9 +85,9 @@ class new_user
     }
 
     # @Check that the user is not checked yet
-    private function user_exists()
+    private function userExists()
     {
-        foreach ($this->stored_users as $user) {
+        foreach ($this->storedUsed as $user) {
             if ($this->username == $user['username']) {
                 array_push($this->error, "Username already taken, please choose a different one");
                 return true;
@@ -97,11 +97,11 @@ class new_user
     }
 
     # @send dates json
-    private function register_user()
+    public function registerUser()
     {
-        if (!$this->user_exists()) {
-            array_push($this->stored_users, $this->new_user);
-            if (file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT))) {
+        if (!$this->userExists()) {
+            array_push($this->storedUsed, $this->newUser);
+            if (file_put_contents($this->storage, json_encode($this->storedUsed, JSON_PRETTY_PRINT))) {
                 return $this->success = "Your registration was successful";
             } else {
                 return array_push($this->error, "Something went wrong, please try again");
@@ -110,9 +110,9 @@ class new_user
     }
 
     # @Send dates and check user login.
-    public function login_user()
+    public function loginUser()
     {
-        foreach ($this->stored_users as $user){
+        foreach ($this->storedUsed as $user){
             if($user['username']==$this->username){
                 if(password_verify($this->password, $user['password'])){
                     session_start();
