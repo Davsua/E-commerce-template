@@ -16,16 +16,8 @@ interface Props {
 }
 
 export const ProductCard: FC<Props> = ({ product }) => {
-  //const [products, setProducts] = useState<any[]>([]);
-
-  /*useEffect(() => {
-    productsApi
-      .get<RootObject>("/products")
-      .then((res) => setProducts(res.data.products));
-  }, []);*/
-
   return (
-    <Grid item xs={12} sm={6} md={3} xl={1}>
+    <Grid item xs={12} sm={4} md={2} xl={1}>
       <Card
         sx={{ height: 320 }}
         style={{
@@ -37,13 +29,13 @@ export const ProductCard: FC<Props> = ({ product }) => {
         <CardActionArea>
           <CardMedia
             style={{ objectFit: "fill" }}
-            sx={{ maxHeight: 155 }}
+            sx={{ height: 155 }}
             component="img"
             image={product.images[0]}
             title={product.title}
           />
-          <CardContent style={{ height: 80 }}>
-            <Typography gutterBottom variant="h6" component="div">
+          <CardContent style={{ height: 75 }}>
+            <Typography gutterBottom variant="body1" component="div">
               {product.title}
             </Typography>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -55,8 +47,11 @@ export const ProductCard: FC<Props> = ({ product }) => {
               </Typography>
             </div>
           </CardContent>
-          <CardActions style={{ display: "flex", justifyContent: "center" }}>
-            <Button size="small">Learn More</Button>
+          <CardActions
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+          >
+            <Button sx={{ fontSize: "11px" }}>Learn More</Button>
+            <Button sx={{ fontSize: "11px" }}>Add to cart</Button>
           </CardActions>
         </CardActionArea>
       </Card>
