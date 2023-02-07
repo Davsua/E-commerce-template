@@ -31,6 +31,7 @@ Please read \*##Create a Code of conduct to make changes to the REPO.
 - **David Suarez** --- [https://github.com/davsua](https://github.com/davsua)
 - **Hernani Bolivar** --- [https://github.com/zagoHyo](https://github.com/zagoHyo)
 - **Santiago Cano** --- [https://github.com/sancg](https://github.com/sancg)
+- **Juan Bedoya** ---
 
 See also the list of [contributors](https://github.com/sancg/starter-pack/contributors) who participated in this project.
 
