@@ -10,9 +10,9 @@ function App() {
     //first
     axios.get('https://pokeapi.co/api/v2/pokemon/').then(
       response => {
-        //console.log(response)
+        console.log(response)
         let {data} = response;
-        setPokemons(data.results);
+        if(data) setPokemons(data.results);
       }
     ).catch(err => {
       console.log(err)
@@ -23,7 +23,7 @@ function App() {
   }, [])
   
     //let {results} = pokemons
-    console.log(pokemons)
+    
   return (
     <div className="App-header">
       <h1>Hello world</h1>
@@ -32,6 +32,7 @@ function App() {
           <div id={index.toString()}>{e.name}</div>
         )
       }
+
     </div>
   );
 }
