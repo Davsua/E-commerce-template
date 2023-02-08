@@ -10,24 +10,25 @@ import {
 import Grid from "@mui/material/Grid";
 import { FC, useContext } from "react";
 import { Product } from "../../interfaces";
-import { ShoppingContext } from '../../context/Shopping/ShoppingContext';
+import { ShoppingContext } from "../../context/Shopping/ShoppingContext";
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: FC<Props> = ({ product }) => {
-  const {addProduct}= useContext(ShoppingContext)
+  const { addProduct } = useContext(ShoppingContext);
   return (
-    <Grid item xs={12} sm={4} md={2} xl={1}>
+    <Grid item xs={6} sm={4} md={2} xl={2}>
       <Card
-        sx={{ height: 320 }}
+        sx={{ maxWidth: 245 }}
         style={{
           borderStyle: "solid",
           borderWidth: "1px",
           borderColor: "#b5b5b5",
         }}
       >
+        {/* CardActionArea: This component wraps children in a single Button, creating a ripple effect when clicked. */}
         <CardActionArea>
           <CardMedia
             style={{ objectFit: "fill" }}
@@ -36,7 +37,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
             image={product.images[0]}
             title={product.title}
           />
-          <CardContent style={{ height: 75 }}>
+          <CardContent>
             <Typography gutterBottom variant="body1" component="div">
               {product.title}
             </Typography>
@@ -49,13 +50,20 @@ export const ProductCard: FC<Props> = ({ product }) => {
               </Typography>
             </div>
           </CardContent>
-          <CardActions
+          {/* <CardActions
             style={{ display: "flex", justifyContent: "space-evenly" }}
-          >
-          </CardActions>
+          ></CardActions> */}
         </CardActionArea>
-            <Button sx={{ fontSize: "11px" }}>Learn More</Button>
-            <Button sx={{ fontSize: "11px" }} onClick={() => addProduct(product)}>Add to cart</Button>
+        <CardActions>
+          {/* <Button sx={{ fontSize: "11px" }}>Learn More</Button> */}
+          <Button
+            variant="contained"
+            sx={{ fontSize: "11px", alignItems: "center" }}
+            onClick={() => addProduct(product)}
+          >
+            Add to cart
+          </Button>
+        </CardActions>
       </Card>
     </Grid>
   );
