@@ -1,16 +1,19 @@
+import { Stack } from "@mui/system";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
-import { Products } from "./components/Products/Products";
+
+import { HomePage, ProductDetail, Search } from "./components/index";
 
 function App() {
   return (
-    <div>
+    <Stack>
       <Router>
         <Routes>
-          <Route path="/" element={<Products />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<ProductDetail />} />
+          <Route path="/" element={<Search />} />
         </Routes>
       </Router>
-    </div>
+    </Stack>
   );
 }
 
