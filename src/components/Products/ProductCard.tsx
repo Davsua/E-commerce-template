@@ -8,14 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Product } from "../../interfaces";
+import { ShoppingContext } from '../../context/Shopping/ShoppingContext';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: FC<Props> = ({ product }) => {
+  const {addProduct}= useContext(ShoppingContext)
   return (
     <Grid item xs={12} sm={4} md={2} xl={1}>
       <Card
@@ -50,10 +52,10 @@ export const ProductCard: FC<Props> = ({ product }) => {
           <CardActions
             style={{ display: "flex", justifyContent: "space-evenly" }}
           >
-            <Button sx={{ fontSize: "11px" }}>Learn More</Button>
-            <Button sx={{ fontSize: "11px" }}>Add to cart</Button>
           </CardActions>
         </CardActionArea>
+            <Button sx={{ fontSize: "11px" }}>Learn More</Button>
+            <Button sx={{ fontSize: "11px" }} onClick={() => addProduct(product)}>Add to cart</Button>
       </Card>
     </Grid>
   );
