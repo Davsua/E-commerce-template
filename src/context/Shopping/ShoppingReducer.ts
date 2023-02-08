@@ -11,7 +11,7 @@ type ShoppingAction =
                 return{
                     ...state,
                     isOpenOrder:false,
-                    cart: [action.payload]
+                    cart: state.cart.includes(action.payload) ? state.cart: [action.payload]
                 }
                 
         
