@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running
 
-- **The first one to create the files should CHANGE THIS SECTION**
+- 
 
 ## Deployment 🍃
 
@@ -20,7 +20,8 @@ Add additional notes about how to deploy this on a live system
 
 - All libraries / Frameworks that we will used.
   **EJM:**
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+- [Material UI](https://mui.com/material-ui/getting-started/usage/)
+- [Axios](https://axios-http.com/docs/intro)
 
 ## Contributing
 

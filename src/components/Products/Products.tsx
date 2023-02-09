@@ -1,23 +1,34 @@
 import { useEffect, useState } from "react";
+
+import { Grid } from "@mui/material";
+
 import { productsApi } from "../../api";
-import { RootObject } from "../../interfaces";
+import { Product, RootObject } from "../../interfaces";
+import { ProductCard } from "./ProductCard";
 
 export const Products = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  const [productsState, setProductsState] = useState<Product[]>([]);
 
   useEffect(() => {
     productsApi
       .get<RootObject>("/products")
-      .then((res) => setProducts(res.data.products));
+      .then((res) => setProductsState(res.data.products));
   }, []);
 
-  console.log(products);
+  //console.log(products);
 
   return (
-    <>
-      {products.map((product, i) => (
-        <p key={i}>{product.title}</p>
+    <Grid
+      container
+      spacing={2}
+      style={{ padding: "30px" }}
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="center"
+    >
+      {productsState.map((product) => (
+        <ProductCard product={product} key={product.id} />
       ))}
-    </>
+    </Grid>
   );
 };
