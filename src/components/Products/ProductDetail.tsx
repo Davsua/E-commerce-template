@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -7,6 +7,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import { useParams } from "react-router-dom";
 import { productsApi } from "../../api";
 import { Product, RootObject } from "../../interfaces";
+import { ProductContext } from '../../context/ProductsContext/ProductContext';
 
 const Img = styled("img")({
   margin: "auto",
@@ -21,16 +22,17 @@ type ProductId = {
 
 export const ProductDetail = () => {
   const { id } = useParams<ProductId>();
+  const {products} = useContext(ProductContext)
+ 
+  // const [productsState, setProductsState] = useState<Product[]>([]);
 
-  const [productsState, setProductsState] = useState<Product[]>([]);
+  // useEffect(() => {
+  //   productsApi
+  //     .get<RootObject>("/products")
+  //     .then((res) => setProductsState(res.data.products));
+  // }, []);
 
-  useEffect(() => {
-    productsApi
-      .get<RootObject>("/products")
-      .then((res) => setProductsState(res.data.products));
-  }, []);
-
-  const productSelected = productsState.find(
+  const productSelected = products.find(
     (product) => product.id.toString() === id
   );
 
