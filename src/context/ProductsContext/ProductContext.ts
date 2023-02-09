@@ -1,8 +1,6 @@
 import { createContext } from 'react';
-import { Product } from '../../interfaces';
+import {  RootObject } from '../../interfaces';
 
-export interface ProductContextProps {
-    products: Product[]
-}
 
-export const ProductContext =  createContext( {} as Product)
+
+export const ProductContext =  createContext( {} as RootObject)

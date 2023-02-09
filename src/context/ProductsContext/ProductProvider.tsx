@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 import { ProductContext } from './ProductContext'
 import { productsApi } from '../../api';
-import { Product, RootObject } from '../../interfaces';
+import {  RootObject } from '../../interfaces';
 
-export interface ProductProviderState{
-    products: Product[]
-} 
+
 interface ProductProviderProps {
     children: JSX.Element | JSX.Element[]
 }
 
-const INITIAL_STATE :ProductProviderState = {
-    products: []
+const INITIAL_STATE :RootObject = {
+    products: [],
+    skip: 0,
+    total: 0,
+    limit: 0
 }
 
 
