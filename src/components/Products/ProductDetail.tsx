@@ -7,6 +7,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import { useParams } from "react-router-dom";
 import { productsApi } from "../../api";
 import { Product, RootObject } from "../../interfaces";
+import { Box, Button, makeStyles } from "@mui/material";
 
 const Img = styled("img")({
   margin: "auto",
@@ -18,6 +19,15 @@ const Img = styled("img")({
 type ProductId = {
   id: string;
 };
+
+/*const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(3),
+  },
+  image: {
+    width: "100%",
+  },
+}));*/
 
 export const ProductDetail = () => {
   const { id } = useParams<ProductId>();
@@ -35,60 +45,19 @@ export const ProductDetail = () => {
   );
 
   // console.log(productSelected?.title);
+  //const classes = useStyles();
 
   return (
-    <div>
-      <Grid
-        container
-        spacing={2}
-        xs={8}
-        sm={8}
-        md={8}
-        xl={8}
-        style={{
-          display: "flex",
-          border: "2px red solid",
-          padding: 10,
-          margin: "10px",
-        }}
-        sx={{ justifyContent: "center" }}
-      >
-        <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img
-              alt={productSelected?.title}
-              src={productSelected?.thumbnail}
-            />
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                {productSelected?.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {productSelected?.rating}
-                {/* To do: convert to stars*/}
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                {productSelected?.price}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography sx={{ cursor: "pointer" }} variant="body2">
-                Remove
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" component="div">
-              $19.00
-            </Typography>
-          </Grid>
-        </Grid>
+    <Grid container>
+      <Grid item xs={12} md={6}>
+        <img src={productSelected?.thumbnail} alt={productSelected?.title} />
       </Grid>
-    </div>
+      <Grid item xs={12} md={6}>
+        <Typography variant="h5">{productSelected?.title}</Typography>
+        <Typography variant="subtitle1">{productSelected?.price}</Typography>
+        <Typography variant="subtitle2">{productSelected?.category}</Typography>
+      </Grid>
+    </Grid>
   );
 };
 

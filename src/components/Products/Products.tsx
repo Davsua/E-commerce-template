@@ -20,11 +20,11 @@ export const Products = () => {
   return (
     <Grid
       container
-      spacing={2}
-      style={{ padding: "30px" }}
+      style={{ padding: "25px" }}
       direction="row"
       justifyContent="flex-start"
       alignItems="center"
+      margin="auto"
     >
       {productsState.map((product) => (
         <ProductCard product={product} key={product.id} />

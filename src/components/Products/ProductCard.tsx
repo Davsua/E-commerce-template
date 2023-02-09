@@ -20,9 +20,16 @@ interface Props {
 export const ProductCard: FC<Props> = ({ product }) => {
   const { addProduct } = useContext(ShoppingContext);
   return (
-    <Grid item xs={6} sm={4} md={2.4} xl={2}>
+    <Grid
+      item
+      xs={12}
+      sm={4}
+      md={2.4}
+      xl={2}
+      sx={{ padding: "10px", width: "300px" }}
+    >
       <Card
-        sx={{ maxWidth: 245 }}
+        sx={{ maxWidth: 300 }}
         style={{
           borderStyle: "solid",
           borderWidth: "1px",
@@ -43,7 +50,12 @@ export const ProductCard: FC<Props> = ({ product }) => {
               title={product.title}
             />
             <CardContent>
-              <Typography gutterBottom variant="body1" component="div">
+              <Typography
+                gutterBottom
+                variant="body1"
+                component="div"
+                sx={{ minHeight: 50 }}
+              >
                 {product.title}
               </Typography>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
