@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import { FC, useContext } from "react";
 import { Product } from "../../interfaces";
 import { ShoppingContext } from "../../context/Shopping/ShoppingContext";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -19,7 +20,7 @@ interface Props {
 export const ProductCard: FC<Props> = ({ product }) => {
   const { addProduct } = useContext(ShoppingContext);
   return (
-    <Grid item xs={6} sm={4} md={2} xl={2}>
+    <Grid item xs={6} sm={4} md={2.4} xl={2}>
       <Card
         sx={{ maxWidth: 245 }}
         style={{
@@ -29,36 +30,45 @@ export const ProductCard: FC<Props> = ({ product }) => {
         }}
       >
         {/* CardActionArea: This component wraps children in a single Button, creating a ripple effect when clicked. */}
-        <CardActionArea>
-          <CardMedia
-            style={{ objectFit: "fill" }}
-            sx={{ height: 155 }}
-            component="img"
-            image={product.images[0]}
-            title={product.title}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="body1" component="div">
-              {product.title}
-            </Typography>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="body2" color="text.secondary">
-                {product.category}
+        <Link
+          to={`/details/${product.id}`}
+          style={{ textDecoration: "none", color: "Black" }}
+        >
+          <CardActionArea>
+            <CardMedia
+              style={{ objectFit: "fill" }}
+              sx={{ height: 155 }}
+              component="img"
+              image={product.images[0]}
+              title={product.title}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="body1" component="div">
+                {product.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                ${product.price}
-              </Typography>
-            </div>
-          </CardContent>
-          {/* <CardActions
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="body2" color="text.secondary">
+                  {product.category}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  ${product.price}
+                </Typography>
+              </div>
+            </CardContent>
+            {/* <CardActions
             style={{ display: "flex", justifyContent: "space-evenly" }}
           ></CardActions> */}
-        </CardActionArea>
+          </CardActionArea>
+        </Link>
         <CardActions>
           {/* <Button sx={{ fontSize: "11px" }}>Learn More</Button> */}
           <Button
             variant="contained"
-            sx={{ fontSize: "11px", alignItems: "center" }}
+            sx={{
+              fontSize: "11px",
+              alignItems: "center",
+              margin: "auto",
+            }}
             onClick={() => addProduct(product)}
           >
             Add to cart
