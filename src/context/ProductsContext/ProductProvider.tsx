@@ -21,7 +21,9 @@ export const ProductProvider = ({children} : ProductProviderProps) => {
     useEffect(() => {
         productsApi
           .get<RootObject>("/products")
-          .then((res) => console.log(res.data.products));
+          .then((res) => {
+            INITIAL_STATE.products = res.data.products
+        })
       }, []);
   return (
     <ProductContext.Provider value={INITIAL_STATE}>{children}</ProductContext.Provider>
