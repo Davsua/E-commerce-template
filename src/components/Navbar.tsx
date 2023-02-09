@@ -13,8 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
-import { Paper } from "@mui/material";
-import { Search } from "@mui/icons-material";
+import { Search } from './Search/Search';
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -143,7 +142,7 @@ function ResponsiveAppBar() {
               SHOP
             </Typography>
           </Link>
-
+          
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -165,8 +164,9 @@ function ResponsiveAppBar() {
                 </Link>
               </Button>
             ))}
-          </Box>
+          <Search/>
 
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
