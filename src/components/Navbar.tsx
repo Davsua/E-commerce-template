@@ -1,49 +1,47 @@
-import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useIcon } from "../Utils/constants";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+// import Avatar from "@mui/material/Avatar";
+// import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
-import { Paper } from "@mui/material";
-import { Search } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
 
+import CartMenu from "./CartMenu";
 const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  // const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+  // The function to view drop-down Nav Menu and User Menu were unified into a toggle logic.
+  const handleToggleNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    !anchorElNav ? setAnchorElNav(event.currentTarget) : setAnchorElNav(null);
+    console.log(event.currentTarget);
+    console.log(useIcon);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  /*
+  const handleToggleUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    !anchorElUser
+      ? setAnchorElUser(event.currentTarget)
+      : setAnchorElUser(null);
+    console.log(anchorElUser);
   };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  */
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Text Shop when Desktop mode */}
@@ -76,20 +74,78 @@ function ResponsiveAppBar() {
             </Typography>
           </Link>
 
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleToggleNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <Link
+                  style={{
+                    display: "flex",
+                    textAlign: "center",
+                    textDecoration: "none",
+                    color: "#fff",
+                    alignItems: "center",
+                  }}
+                  to={`/${page}`}
+                >
+                  {page}
+                </Link>
+              </Button>
+            ))}
+          </Box>
+
+          <CartMenu />
+          {/* <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleToggleUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Santo" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleToggleUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleToggleUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box> */}
+
+          {/* The Hamburger menu displayed when Mobile view is activated */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleToggleNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
+
+            {/* Drop-down list */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
+              // Display on screen Origin
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -100,19 +156,20 @@ function ResponsiveAppBar() {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={handleToggleNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={handleToggleNavMenu}>
                   <Typography textAlign="center">
                     <Link to={`/${page}`}>{page}</Link>
                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
+            {/* End of drop-down menu on mobile */}
           </Box>
 
           <Link
@@ -143,59 +200,6 @@ function ResponsiveAppBar() {
               SHOP
             </Typography>
           </Link>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <Link
-                  style={{
-                    display: "flex",
-                    textAlign: "center",
-                    textDecoration: "none",
-                    color: "#fff",
-                    alignItems: "center",
-                  }}
-                  to={`/${page}`}
-                >
-                  {page}
-                </Link>
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
         </Toolbar>
       </Container>
     </AppBar>
