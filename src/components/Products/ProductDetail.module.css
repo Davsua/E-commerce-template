@@ -1,0 +1,41 @@
+@media only screen and (max-width: 900px) {
+    .root {
+        padding: 24px;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      }
+      .image {
+        width: 100%;
+      }
+      .detailsItem1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #8080801f;
+      }
+      .detailsItemInfo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    .item{
+        margin-top: 10px;
+        padding: 0px 10px;
+    }
+    .primaryColor{
+        color: #1976d2;
+    } 
+    .descPrice{
+      width: 100%;
+    }
+}
+
+.image{
+    width: 80%;
+} 
+
+
+

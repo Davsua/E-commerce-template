@@ -1,76 +1,77 @@
-import { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
+import { useContext } from "react";
+//import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+//import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import ButtonBase from "@mui/material/ButtonBase";
+//import ButtonBase from "@mui/material/ButtonBase";
 import { useParams } from "react-router-dom";
-import { productsApi } from "../../api";
-import { Product, RootObject } from "../../interfaces";
-import { Box, Button, makeStyles } from "@mui/material";
+import { ProductContext } from "../../context/ProductsContext/ProductContext";
 
-const Img = styled("img")({
+import styles from "./ProductDetail.module.css";
+import { RecomendedBySelected } from "./RecomendedBySelected";
+
+/*const Img = styled("img")({
   margin: "auto",
   display: "block",
   maxWidth: "100%",
   maxHeight: "100%",
-});
+});*/
 
 type ProductId = {
   id: string;
 };
 
-/*const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(3),
-  },
-  image: {
-    width: "100%",
-  },
-}));*/
-
 export const ProductDetail = () => {
   const { id } = useParams<ProductId>();
+  const { products } = useContext(ProductContext);
 
-  const [productsState, setProductsState] = useState<Product[]>([]);
-
-  useEffect(() => {
-    productsApi
-      .get<RootObject>("/products")
-      .then((res) => setProductsState(res.data.products));
-  }, []);
-
-  const productSelected = productsState.find(
+  const productSelected = products.find(
     (product) => product.id.toString() === id
-  );
-
-  // console.log(productSelected?.title);
-  //const classes = useStyles();
+  )!; //  '!' -> it means that always there are value, if we dont put it it can be undefined and we will have problems to pass it as prop
 
   return (
-    <Grid container>
-      <Grid item xs={12} md={6}>
-        <img src={productSelected?.thumbnail} alt={productSelected?.title} />
+    <>
+      <Grid
+        container
+        sx={{ width: "100%", margin: "auto" }}
+        className={styles.root}
+      >
+        <Grid item xs={12} md={6} className={styles.detailsItem1}>
+          <img
+            src={productSelected?.thumbnail}
+            alt={productSelected?.title}
+            className={styles.image}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ marginTop: "10px" }}
+          className={`${styles.detailsItemInfo} ${styles.item}`}
+        >
+          <Typography sx={{ fontSize: "17px" }}>
+            {productSelected?.title}
+          </Typography>
+          {/* TODO: convert rating to stars */}
+          <Typography variant="subtitle1">{productSelected?.rating}</Typography>
+        </Grid>
+        <Grid
+          item
+          sx={{
+            marginTop: "10px",
+          }}
+          className={`${styles.item} ${styles.descPrice}`}
+        >
+          <Typography variant="subtitle2">
+            {productSelected?.description}
+          </Typography>
+          <Typography variant="h6" className={`${styles.primaryColor}`}>
+            $. {productSelected?.price}
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <Typography variant="h5">{productSelected?.title}</Typography>
-        <Typography variant="subtitle1">{productSelected?.price}</Typography>
-        <Typography variant="subtitle2">{productSelected?.category}</Typography>
-      </Grid>
-    </Grid>
+      <RecomendedBySelected product={productSelected} />
+    </>
   );
 };
-
-{
-  /*<Paper
-      elevation={8}
-      sx={{
-        p: 5,
-        margin: "auto",
-        width: "50%",
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-      }}
-    >*/
-}
