@@ -1,41 +1,115 @@
-@media only screen and (max-width: 900px) {
-    .root {
-        padding: 24px;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-      }
-      .image {
-        width: 100%;
-      }
-      .detailsItem1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #8080801f;
-      }
-      .detailsItemInfo{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    .item{
-        margin-top: 10px;
-        padding: 0px 10px;
-    }
-    .primaryColor{
-        color: #1976d2;
-    } 
-    .descPrice{
-      width: 100%;
-    }
+.root {
+  padding: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 80%;
+  box-shadow: -2px -1px 7px 0px #8080806e;
+}
+ .image {
+  width: 90%;
+  height: 90%;
+} 
+.detailsItem1 {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-right: 40px;
+  align-items: center;
+  border: 1px solid #77777741;
+}
+.detailsItemInfo{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+.item{
+  padding: 0px 10px;
+}
+.primaryColor{
+  color: #1976d2;
+} 
+.descPrice{
+width: 100%;
+display: flex;
+flex-direction: column-reverse;
 }
 
-.image{
-    width: 80%;
-} 
+.discount{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.favoriteSession{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.shareSession{
+  display: flex;
+  align-items: center;
+}
+
+.icons{
+  border-radius: 50%;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  .root {
+    width: 100%;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      
+    }
+    .containerInfo{
+      width: 100%;
+    }
+    .image {
+      width: 100%;
+    }
+    .detailsItem1 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #77777741;
+      margin-right: 0;
+    }
+    .detailsItemInfo{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  .item{
+      margin-top: 10px;
+      padding: 0px 10px;
+  }
+  .primaryColor{
+      color: #1976d2;
+  } 
+  .descPrice{
+    width: 100%;
+    display: flex;
+flex-direction: column;
+  }
+  .discount{
+    display: flex;
+    flex-direction: row;
+  }
+}
 
 
 
