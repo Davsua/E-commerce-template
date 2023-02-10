@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { HomePage, Navbar, ProductDetail, Search } from "./components/index";
-import { Box } from "@mui/material";
+import { HomePage, Navbar, ProductDetail, Search } from './components/index'
+import { Box } from '@mui/material'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Search />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

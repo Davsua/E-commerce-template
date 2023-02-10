@@ -1,8 +1,8 @@
-import ShoppingBag from "@mui/icons-material/ShoppingBag";
+import ShoppingBag from '@mui/icons-material/ShoppingBag'
 
 export const useIcon = [
   // { icon: <MenuIcon />, name: "menu" },
-  { icon: <ShoppingBag />, name: "bag" },
-];
+  { icon: <ShoppingBag />, name: 'bag' },
+]
 
 // Experimental

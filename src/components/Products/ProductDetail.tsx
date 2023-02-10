@@ -1,27 +1,27 @@
-import { useContext, useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import ButtonBase from "@mui/material/ButtonBase";
-import { useParams } from "react-router-dom";
-import { productsApi } from "../../api";
-import { Product, RootObject } from "../../interfaces";
-import { ProductContext } from '../../context/ProductsContext/ProductContext';
+import { useContext, useEffect, useState } from 'react'
+import { styled } from '@mui/material/styles'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import ButtonBase from '@mui/material/ButtonBase'
+import { useParams } from 'react-router-dom'
+import { productsApi } from '../../api'
+import { Product, RootObject } from '../../interfaces'
+import { ProductContext } from '../../context/ProductsContext/ProductContext'
 
-const Img = styled("img")({
-  margin: "auto",
-  display: "block",
-  maxWidth: "100%",
-  maxHeight: "100%",
-});
+const Img = styled('img')({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%',
+})
 
 type ProductId = {
   id: string;
 };
 
 export const ProductDetail = () => {
-  const { id } = useParams<ProductId>();
+  const { id } = useParams<ProductId>()
   const {products} = useContext(ProductContext)
  
   // const [productsState, setProductsState] = useState<Product[]>([]);
@@ -34,7 +34,7 @@ export const ProductDetail = () => {
 
   const productSelected = products.find(
     (product) => product.id.toString() === id
-  );
+  )
 
   // console.log(productSelected?.title);
 
@@ -48,12 +48,12 @@ export const ProductDetail = () => {
         md={8}
         xl={8}
         style={{
-          display: "flex",
-          border: "2px red solid",
+          display: 'flex',
+          border: '2px red solid',
           padding: 10,
-          margin: "10px",
+          margin: '10px',
         }}
-        sx={{ justifyContent: "center" }}
+        sx={{ justifyContent: 'center' }}
       >
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
@@ -78,7 +78,7 @@ export const ProductDetail = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography sx={{ cursor: "pointer" }} variant="body2">
+              <Typography sx={{ cursor: 'pointer' }} variant="body2">
                 Remove
               </Typography>
             </Grid>
@@ -91,8 +91,8 @@ export const ProductDetail = () => {
         </Grid>
       </Grid>
     </div>
-  );
-};
+  )
+}
 
 {
   /*<Paper
