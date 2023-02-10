@@ -95,9 +95,9 @@ function ResponsiveAppBar() {
                 </Link>
               </Button>
             ))}
-            <Search/>
           </Box>
 
+          <Search/>
           <CartMenu />
           {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
