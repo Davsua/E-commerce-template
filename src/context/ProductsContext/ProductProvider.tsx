@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ProductContext } from './ProductContext'
 import { productsApi } from '../../api';
-import {  Product, RootObject } from '../../interfaces';
+import {  Product, ProductState, RootObject } from '../../interfaces';
 
-export interface ProductState  {
-  products: Product[],
-  skip: number,
-  total: number,
-  limit: number
-}
 
 interface ProductProviderProps {
     children: JSX.Element | JSX.Element[]

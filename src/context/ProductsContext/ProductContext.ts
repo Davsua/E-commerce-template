@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { ProductState } from './ProductProvider';
+import { ProductState } from '../../interfaces';
 
 
 
