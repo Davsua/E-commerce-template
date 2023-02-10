@@ -1,1 +1,1 @@
-export * from "./productInterfase";
+export * from './productInterfase'

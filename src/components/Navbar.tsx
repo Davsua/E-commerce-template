@@ -1,35 +1,36 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useIcon } from "../Utils/constants";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useIcon } from '../Utils/constants'
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Menu from '@mui/material/Menu'
+import Container from '@mui/material/Container'
 // import Avatar from "@mui/material/Avatar";
 // import Tooltip from "@mui/material/Tooltip";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import MenuIcon from "@mui/icons-material/Menu";
+import Button from '@mui/material/Button'
+import MenuItem from '@mui/material/MenuItem'
+import AdbIcon from '@mui/icons-material/Adb'
+import MenuIcon from '@mui/icons-material/Menu'
 
-import CartMenu from "./CartMenu";
-const pages = ["Products", "Pricing", "Blog"];
+import CartMenu from './CartMenu'
+import { Search } from './Search/Search'
+const pages = ['Products', 'Pricing', 'Blog']
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
   // const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   // The function to view drop-down Nav Menu and User Menu were unified into a toggle logic.
   const handleToggleNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    !anchorElNav ? setAnchorElNav(event.currentTarget) : setAnchorElNav(null);
-    console.log(event.currentTarget);
-    console.log(useIcon);
-  };
+    !anchorElNav ? setAnchorElNav(event.currentTarget) : setAnchorElNav(null)
+    console.log(event.currentTarget)
+    console.log(useIcon)
+  }
 
   /*
   const handleToggleUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -47,47 +48,46 @@ function ResponsiveAppBar() {
           {/* Text Shop when Desktop mode */}
           <Link
             style={{
-              display: "flex",
-              textAlign: "center",
-              textDecoration: "none",
-              color: "#fff",
+              display: 'flex',
+              textAlign: 'center',
+              textDecoration: 'none',
+              color: '#fff',
               marginTop: 1,
             }}
             to="/"
           >
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
 
             <Typography
               variant="h6"
               noWrap
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
                 // fontFamily: "monospace",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: '.3rem',
                 // color: "inherit",
-                textDecoration: "none",
+                textDecoration: 'none',
               }}
             >
               SHOP
             </Typography>
           </Link>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleToggleNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 <Link
                   style={{
-                    display: "flex",
-                    textAlign: "center",
-                    textDecoration: "none",
-                    color: "#fff",
-                    alignItems: "center",
+                    display: 'flex',
+                    textAlign: 'center',
+                    textDecoration: 'none',
+                    color: '#fff',
+                    alignItems: 'center',
                   }}
                   to={`/${page}`}
                 >
@@ -95,6 +95,7 @@ function ResponsiveAppBar() {
                 </Link>
               </Button>
             ))}
+            <Search/>
           </Box>
 
           <CartMenu />
@@ -129,7 +130,7 @@ function ResponsiveAppBar() {
           </Box> */}
 
           {/* The Hamburger menu displayed when Mobile view is activated */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -147,18 +148,18 @@ function ResponsiveAppBar() {
               anchorEl={anchorElNav}
               // Display on screen Origin
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleToggleNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
@@ -174,27 +175,27 @@ function ResponsiveAppBar() {
 
           <Link
             style={{
-              display: "flex",
-              textAlign: "center",
-              textDecoration: "none",
-              color: "#fff",
-              alignItems: "center",
+              display: 'flex',
+              textAlign: 'center',
+              textDecoration: 'none',
+              color: '#fff',
+              alignItems: 'center',
             }}
             to="/"
           >
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 // fontFamily: "monospace",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: '.3rem',
                 // color: "inherit",
-                textDecoration: "none",
+                textDecoration: 'none',
               }}
             >
               SHOP
@@ -203,6 +204,6 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
-  );
+  )
 }
-export default ResponsiveAppBar;
+export default ResponsiveAppBar

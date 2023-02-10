@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from 'react'
 
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material'
 
-import { productsApi } from "../../api";
-import { Product, RootObject } from "../../interfaces";
-import { ProductCard } from "./ProductCard";
-import { ProductContext } from '../../context/ProductsContext/ProductContext';
+import { productsApi } from '../../api'
+import { Product, RootObject } from '../../interfaces'
+import { ProductCard } from './ProductCard'
+import { ProductContext } from '../../context/ProductsContext/ProductContext'
 
 export const Products = () => {
- const {products} = useContext(ProductContext)
+  const {products} = useContext(ProductContext)
   // const [productsState, setProductsState] = useState<Product[]>([]);
 
   // useEffect(() => {
@@ -23,15 +23,15 @@ export const Products = () => {
     <Grid
       container
       spacing={2}
-      style={{ padding: "30px" }}
+      style={{ padding: '30px' }}
       direction="row"
       justifyContent="flex-start"
       alignItems="center"
     >
       {
         products.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
+          <ProductCard product={product} key={product.id} />
+        ))}
     </Grid>
-  );
-};
+  )
+}

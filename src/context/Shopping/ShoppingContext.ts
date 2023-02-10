@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import { Product } from '../../interfaces';
+import { createContext } from 'react'
+import { Product } from '../../interfaces'
 
 export interface ShoppingContextProps {
     state:{    

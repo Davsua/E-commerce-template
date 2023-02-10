@@ -1,12 +1,12 @@
-import ShoppingBag from "@mui/icons-material/ShoppingBag";
-import { Box, IconButton } from "@mui/material";
-import { useContext } from "react";
-import Badge from "@mui/material/Badge";
+import ShoppingBag from '@mui/icons-material/ShoppingBag'
+import { Box, IconButton } from '@mui/material'
+import { useContext } from 'react'
+import Badge from '@mui/material/Badge'
 
 // Custom stiles provided by Material UI
 // import { styled } from "@mui/material/styles";
 
-import { ShoppingContext } from "../context/Shopping/ShoppingContext";
+import { ShoppingContext } from '../context/Shopping/ShoppingContext'
 
 /*
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
@@ -20,8 +20,8 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 */
 
 const CartMenu = () => {
-  const { state } = useContext(ShoppingContext);
-  const handleToggleCart = () => {};
+  const { state } = useContext(ShoppingContext)
+  const handleToggleCart = () => {}
   return (
     <Box sx={{ flexGrow: 0 }}>
       <IconButton
@@ -34,15 +34,15 @@ const CartMenu = () => {
           badgeContent={!state.cart ? 0 : state.cart.length}
           color="secondary"
           anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
+            vertical: 'top',
+            horizontal: 'right',
           }}
         >
           <ShoppingBag />
         </Badge>
       </IconButton>
     </Box>
-  );
-};
+  )
+}
 
-export default CartMenu;
+export default CartMenu
