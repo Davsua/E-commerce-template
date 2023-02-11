@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ProductContext } from '../../context/ProductsContext/ProductContext'
 import { StyledListCategory, StyledListItemTextCategory  } from './styles'
-import { ListItemButton } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 export const Category = () => {
   const {products} = useContext(ProductContext)
@@ -13,9 +13,9 @@ export const Category = () => {
     <StyledListCategory >
       {
         filterNoDuplicate.map( category =>(
-          <ListItemButton component="a" href={`/${category}`} key={category}>
+          <Link to={`/${category}`} key={category}>
             <StyledListItemTextCategory primary={category} />
-          </ListItemButton>
+          </Link>
 
         ))
       }
