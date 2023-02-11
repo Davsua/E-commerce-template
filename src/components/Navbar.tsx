@@ -86,19 +86,15 @@ function ResponsiveAppBar() {
             </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
-                onClick={() => handleToggleCategory()}>
-                <Link
-                  style={{
-                    display: 'flex',
-                    textAlign: 'center',
-                    textDecoration: 'none',
-                    color: '#fff',
-                    alignItems: 'center',
-                  }}
-                  to={'/'}
-                >
+                onClick={() => handleToggleCategory()}
+                style={{
+                  display: 'flex',
+                  textAlign: 'center',
+                  textDecoration: 'none',
+                  color: '#fff',
+                  alignItems: 'center',
+                }}>
                PRODUCTS  
-                </Link>
               </Button>
               {pages.map((page) => (
                 <Button
