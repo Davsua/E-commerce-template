@@ -1,17 +1,14 @@
-export interface ThemeOptions {
-    breakpoints:{
-        values: {
-            xs: number,
-            sm: number,
-            md: number,
-            lg: number,
-            xl: number,
-        },
-      },
-      palette: {
-        primary: {
-          main: string,
-        },
-    }
-   
-}
+declare module '@mui/material/styles' 
+    
+export interface PaletteOptions {
+    gradient: string;
+    border: {
+      subtle: string;
+    };
+  }
+export  interface Palette {
+    gradient: string;
+    border: {
+      subtle: string;
+    };
+  }
