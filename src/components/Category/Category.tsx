@@ -12,9 +12,9 @@ export const Category = () => {
   return (
     <StyledListCategory >
       {
-        filterNoDuplicate.map( product =>(
-          <ListItemButton component="a" href={`/${product}`} key={product}>
-            <StyledListItemTextCategory primary={product} />
+        filterNoDuplicate.map( category =>(
+          <ListItemButton component="a" href={`/${category}`} key={category}>
+            <StyledListItemTextCategory primary={category} />
           </ListItemButton>
 
         ))

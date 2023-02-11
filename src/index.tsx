@@ -1,13 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import CssBaseline from '@mui/material/CssBaseline'
-
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { ShoppingProvider } from './context/Shopping/ShoppingProvider'
 import { ProductProvider } from './context/ProductsContext/ProductProvider'
-import { theme } from './theme'
-import { Experimental_CssVarsProvider  as CssVarsProvider} from '@mui/material'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,13 +12,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <CssBaseline />
-    <CssVarsProvider  theme={theme}>
-      <ProductProvider>     
-        <ShoppingProvider>
-          <App />
-        </ShoppingProvider>
-      </ProductProvider>
-    </CssVarsProvider >
+    <ProductProvider>     
+      <ShoppingProvider>
+        <App />
+      </ShoppingProvider>
+    </ProductProvider>
   </React.StrictMode>
 )
 
