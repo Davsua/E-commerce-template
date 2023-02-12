@@ -1,13 +1,14 @@
 import  Input  from '@mui/material/Input'
 import { ChangeEvent, useContext, useRef, useState } from 'react'
 import { ProductContext } from '../../context/ProductsContext/ProductContext'
+import { SearchResult } from '../SearchResult/SearchResult'
 
 export const Search = () => {
   const {products} = useContext(ProductContext)
   const debounceRef = useRef<NodeJS.Timeout>()
   const [input, setInput] = useState('')
 
-  const filtrillo =  !input ? products : products.filter((dato) => dato.title.toLowerCase().includes(input.toLocaleLowerCase()))
+  const filtrillo =  !input ? [] : products.filter((dato) => dato.title.toLowerCase().includes(input.toLocaleLowerCase()))
 
   const handleSearch = (event : ChangeEvent<HTMLInputElement>) =>{
     if(debounceRef.current) clearTimeout(debounceRef.current)
@@ -19,12 +20,17 @@ export const Search = () => {
 
   return (
     <>
-      {
-        console.log(input)
-      }
-      <Input 
-        onChange={handleSearch}
-        placeholder='Search your product ...'/>
+
+      <div style={{position:'relative'}}>
+        <Input 
+          onChange={handleSearch}
+          placeholder='Search your product ...'/>
+        {
+          filtrillo.length > 0 ?
+            <SearchResult products={filtrillo}/>
+            :''   
+        }
+      </div>
     </>
   )
 }
