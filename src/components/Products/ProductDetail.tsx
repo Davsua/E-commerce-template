@@ -1,109 +1,171 @@
-import { useContext, useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles'
-import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
+import { useContext } from 'react'
+//import { styled } from "@mui/material/styles";
+//import Grid from "@mui/material/Grid";
+//import Paper from "@mui/material/Paper";
 import Typography from '@mui/material/Typography'
-import ButtonBase from '@mui/material/ButtonBase'
+//import ButtonBase from "@mui/material/ButtonBase";
 import { useParams } from 'react-router-dom'
-import { productsApi } from '../../api'
-import { Product, RootObject } from '../../interfaces'
 import { ProductContext } from '../../context/ProductsContext/ProductContext'
 
-const Img = styled('img')({
-  margin: 'auto',
-  display: 'block',
-  maxWidth: '100%',
-  maxHeight: '100%',
-})
+import styles from './ProductDetail.module.css'
+import { RecomendedBySelected } from './RecomendedBySelected'
+import { Button } from '@mui/material'
+import Favorite from '@mui/icons-material/FavoriteBorder'
+import LinkedIn from '@mui/icons-material/LinkedIn'
+import Facebook from '@mui/icons-material/Facebook'
+import { ShoppingContext } from '../../context/Shopping/ShoppingContext'
+
+/*const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  maxHeight: "100%",
+});*/
 
 type ProductId = {
-  id: string;
-};
+  id: string
+}
 
 export const ProductDetail = () => {
   const { id } = useParams<ProductId>()
-  const {products} = useContext(ProductContext)
- 
-  // const [productsState, setProductsState] = useState<Product[]>([]);
-
-  // useEffect(() => {
-  //   productsApi
-  //     .get<RootObject>("/products")
-  //     .then((res) => setProductsState(res.data.products));
-  // }, []);
+  const { products } = useContext(ProductContext)
+  const { addProduct } = useContext(ShoppingContext)
 
   const productSelected = products.find(
     (product) => product.id.toString() === id
-  )
+  )! //  '!' -> it means that always there are value, if we dont put it it can be undefined and we will have problems to pass it as prop
 
-  // console.log(productSelected?.title);
+  console.log(productSelected)
+
+  const discountPercentage =
+    '%' + productSelected.discountPercentage.toString().split('.').shift()
 
   return (
-    <div>
-      <Grid
-        container
-        spacing={2}
-        xs={8}
-        sm={8}
-        md={8}
-        xl={8}
-        style={{
-          display: 'flex',
-          border: '2px red solid',
-          padding: 10,
-          margin: '10px',
-        }}
-        sx={{ justifyContent: 'center' }}
-      >
-        <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img
-              alt={productSelected?.title}
-              src={productSelected?.thumbnail}
-            />
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                {productSelected?.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {productSelected?.rating}
-                {/* To do: convert to stars*/}
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                {productSelected?.price}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                Remove
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" component="div">
-              $19.00
+    <>
+      <div className={styles.root}>
+        <div className={styles.detailsItem1}>
+          <img
+            src={productSelected?.thumbnail}
+            alt={productSelected?.title}
+            className={styles.image}
+          />
+        </div>
+
+        <div className={styles.containerInfo}>
+          <div className={`${styles.detailsItemInfo} ${styles.item}`}>
+            <Typography sx={{ fontSize: '17px' }}>
+              <b>{productSelected?.title}</b>
             </Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
+            {/* TODO: convert rating to stars */}
+            <Typography variant='subtitle1'>
+              {productSelected?.rating} (#)
+            </Typography>
+          </div>
+
+          <div className={`${styles.item} ${styles.descPrice}`}>
+            <Typography variant='subtitle2'>
+              {productSelected?.description}
+            </Typography>
+            {productSelected.discountPercentage ? (
+              <div className={styles.discount}>
+                <Typography variant='h6' className={`${styles.primaryColor}`}>
+                  $. {productSelected?.price}
+                </Typography>
+
+                <p
+                  style={{
+                    color: 'green',
+                    fontSize: '13px',
+                    marginLeft: '8px',
+                  }}
+                >
+                  {discountPercentage}
+                </p>
+              </div>
+            ) : (
+              <Typography variant='h6' className={`${styles.primaryColor}`}>
+                $. {productSelected?.price}
+              </Typography>
+            )}
+          </div>
+
+          <div className={`${styles.item} ${styles.favoriteSession}`}>
+            <Button
+              variant='contained'
+              sx={{
+                fontSize: '11px',
+                alignItems: 'center',
+                marginRight: '8px',
+              }}
+              onClick={() => addProduct(productSelected)}
+            >
+              Add to cart
+            </Button>
+            <Favorite />
+          </div>
+
+          <div>
+            <Typography
+              variant='subtitle2'
+              sx={{ color: 'gray', marginTop: '15px' }}
+              className={styles.item}
+            >
+              <b>Categories: </b> {productSelected.category}
+            </Typography>
+            <Typography
+              variant='subtitle2'
+              sx={{ color: 'gray', marginTop: '15px' }}
+              className={`${styles.item} ${styles.shareSession}`}
+            >
+              <b>Share: </b>{' '}
+              <LinkedIn className={styles.icons} sx={{ color: '#1f1fffe8' }} />{' '}
+              <Facebook className={styles.icons} sx={{ color: '#0000ffd6' }} />
+            </Typography>
+          </div>
+        </div>
+      </div>
+      <RecomendedBySelected product={productSelected} />
+    </>
   )
 }
 
-{
-  /*<Paper
-      elevation={8}
-      sx={{
-        p: 5,
-        margin: "auto",
-        width: "50%",
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-      }}
-    >*/
-}
+/* <div
+        container
+        sx={{ width: "100%", margin: "auto" }}
+        className={styles.root}
+      >
+        <Grid item xs={12} md={6} className={styles.detailsItem1}>
+          <img
+            src={productSelected?.thumbnail}
+            alt={productSelected?.title}
+            className={styles.image}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ marginTop: "10px" }}
+          className={`${styles.detailsItemInfo} ${styles.item}`}
+        >
+          <Typography sx={{ fontSize: "17px" }}>
+            {productSelected?.title}
+          </Typography>
+          {/* TODO: convert rating to stars */ //}
+/*<Typography variant="subtitle1">{productSelected?.rating}</Typography>
+        </Grid>
+        <Grid
+          item
+          sx={{
+            marginTop: "10px",
+          }}
+          className={`${styles.item} ${styles.descPrice}`}
+        >
+          <Typography variant="subtitle2">
+            {productSelected?.description}
+          </Typography>
+          <Typography variant="h6" className={`${styles.primaryColor}`}>
+            $. {productSelected?.price}
+          </Typography>
+        </Grid>
+      </div> */
