@@ -1,5 +1,5 @@
-import { Stack } from "@mui/system";
-import { Products } from "../index";
+import { Stack } from '@mui/system';
+import { Products } from '../index';
 
 export const HomePage = () => {
   return (

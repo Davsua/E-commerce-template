@@ -13,7 +13,7 @@ interface Props {
 export const ProductView: FC<Props> = ({ product }) => {
   const { addProduct } = useContext(ShoppingContext);
 
-  let discount =
+  const discount =
     '%' + product?.discountPercentage.toString().split('.').shift();
 
   const [mainImg, setMainImg] = useState(product?.thumbnail);
@@ -41,7 +41,7 @@ export const ProductView: FC<Props> = ({ product }) => {
 
     //Elimino los repetidos
     setLeftImgs([...new Set(newLeftImgs)]);
-    console.log(leftImgs);
+    //console.log(leftImgs);
 
     setMainImg(clickedImgSrc);
   };

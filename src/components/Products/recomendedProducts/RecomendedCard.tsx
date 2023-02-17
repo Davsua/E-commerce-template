@@ -11,7 +11,7 @@ import {
 import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '../../../interfaces';
-import styles from './RecomendedProduct.module.css';
+//import styles from './RecomendedProduct.module.css';
 import { ShoppingContext } from '../../../context/Shopping/ShoppingContext';
 
 interface Props {

@@ -4,4 +4,4 @@ import { ProductState } from './ProductProvider';
 
 
 
-export const ProductContext =  createContext( {} as ProductState)
+export const ProductContext =  createContext( {} as ProductState);

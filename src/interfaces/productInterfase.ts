@@ -18,3 +18,9 @@ export interface Product {
   thumbnail: string;
   images: string[];
 }
+export interface ProductState  {
+  products: Product[],
+  skip: number,
+  total: number,
+  limit: number
+}

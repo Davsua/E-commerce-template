@@ -12,7 +12,7 @@ interface Props {
 export const RecomendedBySelected: FC<Props> = ({ product }) => {
   const { products } = useContext(ProductContext);
   //let product = products[0];
-  let categorieRecommended = products.filter(
+  const categorieRecommended = products.filter(
     (productCat) =>
       productCat.category === product.category && productCat.id !== product.id
   );
@@ -25,7 +25,7 @@ export const RecomendedBySelected: FC<Props> = ({ product }) => {
         </h1>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {categorieRecommended.map((productRec) => (
-            <RecomendedCard product={productRec} />
+            <RecomendedCard product={productRec} key={productRec.id} />
           ))}
         </div>
       </Box>

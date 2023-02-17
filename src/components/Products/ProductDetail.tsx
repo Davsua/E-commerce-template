@@ -13,11 +13,16 @@ export const ProductDetail = () => {
   const { id } = useParams<ProductId>();
   const { products } = useContext(ProductContext);
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const productSelected = products.find(
     (product) => product.id.toString() === id
   )!; //  '!' -> it means that always there are value, if we dont put it it can be undefined and we will have problems to pass it as prop
 
   //console.log(productSelected);
+  console.log(productSelected);
+
+  /*const discountPercentage =
+    '%' + productSelected.discountPercentage.toString().split('.').shift();*/
 
   return (
     <>
