@@ -8,23 +8,23 @@
   Typography,
 } from "@mui/material";*/
 // import Grid from "@mui/material/Grid";
-import { FC, useContext } from 'react'
-import { Product } from '../../interfaces'
+import { FC, useContext } from 'react';
+import { Product } from '../../interfaces';
 
 // import { Link } from "react-router-dom";
-import { ProductContext } from '../../context/ProductsContext/ProductContext'
+import { ProductContext } from '../../context/ProductsContext/ProductContext';
 
 interface Props {
   product: Product;
 }
 
 export const RecomendedBySelected: FC<Props> = ({ product }) => {
-  const { products } = useContext(ProductContext)
+  const { products } = useContext(ProductContext);
   //let product = products[0];
   const categorieRecommended = products.filter(
     (productCat) =>
       productCat.category === product.category && productCat.id !== product.id
-  )
+  );
   return (
     <>
       {/* testing recommended side*/}
@@ -42,5 +42,5 @@ export const RecomendedBySelected: FC<Props> = ({ product }) => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};

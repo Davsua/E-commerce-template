@@ -1,40 +1,40 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useIcon } from '../Utils/constants'
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useIcon } from '../Utils/constants';
 
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import Container from '@mui/material/Container'
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
 // import Avatar from "@mui/material/Avatar";
 // import Tooltip from "@mui/material/Tooltip";
-import Button from '@mui/material/Button'
-import MenuItem from '@mui/material/MenuItem'
-import AdbIcon from '@mui/icons-material/Adb'
-import MenuIcon from '@mui/icons-material/Menu'
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import MenuIcon from '@mui/icons-material/Menu';
 
-import CartMenu from './CartMenu'
-import { Search } from './Search/Search'
-import { Category } from './Category/Category'
-const pages = ['Pricing', 'Blog']
+import CartMenu from './CartMenu';
+import { Search } from './Search/Search';
+import { Category } from './Category/Category';
+const pages = ['Pricing', 'Blog'];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
 
 
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
-  const [isHover, setIsHover] = useState(false)
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [isHover, setIsHover] = useState(false);
   // const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   // The function to view drop-down Nav Menu and User Menu were unified into a toggle logic.
   const handleToggleNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    !anchorElNav ? setAnchorElNav(event.currentTarget) : setAnchorElNav(null)
-    console.log(event.currentTarget)
-    console.log(useIcon)
-  }
+    !anchorElNav ? setAnchorElNav(event.currentTarget) : setAnchorElNav(null);
+    console.log(event.currentTarget);
+    console.log(useIcon);
+  };
 
   /*
   const handleToggleUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -45,8 +45,8 @@ function ResponsiveAppBar() {
   };
   */
   const handleToggleCategory = () =>{
-    setIsHover(!isHover)
-  }
+    setIsHover(!isHover);
+  };
 
   
 
@@ -231,6 +231,6 @@ function ResponsiveAppBar() {
           :''
       }
     </>
-  )
+  );
 }
-export default ResponsiveAppBar
+export default ResponsiveAppBar;

@@ -1,5 +1,5 @@
-import { createContext } from 'react'
-import { Product } from '../../interfaces'
+import { createContext } from 'react';
+import { Product } from '../../interfaces';
 
 export interface ShoppingContextProps {
     state:{    
@@ -12,4 +12,4 @@ export interface ShoppingContextProps {
     
 }
 
-export const ShoppingContext = createContext({} as ShoppingContextProps)
+export const ShoppingContext = createContext({} as ShoppingContextProps);

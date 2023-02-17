@@ -1,12 +1,12 @@
-import ShoppingBag from '@mui/icons-material/ShoppingBag'
-import { Box, IconButton } from '@mui/material'
-import { useContext } from 'react'
-import Badge from '@mui/material/Badge'
+import ShoppingBag from '@mui/icons-material/ShoppingBag';
+import { Box, IconButton } from '@mui/material';
+import { useContext } from 'react';
+import Badge from '@mui/material/Badge';
 
 // Custom stiles provided by Material UI
 // import { styled } from "@mui/material/styles";
 
-import { ShoppingContext } from '../context/Shopping/ShoppingContext'
+import { ShoppingContext } from '../context/Shopping/ShoppingContext';
 
 /*
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
@@ -20,19 +20,21 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 */
 
 const CartMenu = () => {
-  const { state } = useContext(ShoppingContext)
-  const handleToggleCart = () => {}
+  const { state } = useContext(ShoppingContext);
+  const handleToggleCart = () => {
+    console.log('Hola mundo');
+  };
   return (
     <Box sx={{ flexGrow: 0 }}>
       <IconButton
-        size="large"
-        aria-label="cart"
+        size='large'
+        aria-label='cart'
         onClick={handleToggleCart}
-        color="inherit"
+        color='inherit'
       >
         <Badge
           badgeContent={!state.cart ? 0 : state.cart.length}
-          color="secondary"
+          color='secondary'
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'right',
@@ -42,7 +44,7 @@ const CartMenu = () => {
         </Badge>
       </IconButton>
     </Box>
-  )
-}
+  );
+};
 
-export default CartMenu
+export default CartMenu;

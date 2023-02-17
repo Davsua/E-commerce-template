@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { ProductContext } from './ProductContext'
-import { productsApi } from '../../api'
-import {  Product, RootObject } from '../../interfaces'
+import { useEffect, useState } from 'react';
+import { ProductContext } from './ProductContext';
+import { productsApi } from '../../api';
+import {  Product, RootObject } from '../../interfaces';
 
 export interface ProductState  {
   products: Product[],
@@ -19,19 +19,19 @@ const INITIAL_STATE :ProductState = {
   skip: 0,
   total: 0,
   limit: 0
-}
+};
 
 
 
 export const ProductProvider = ({children} : ProductProviderProps) => {
-  const  [state, setState] = useState(INITIAL_STATE)
+  const  [state, setState] = useState(INITIAL_STATE);
 
   useEffect(() => {
     productsApi
       .get<RootObject>('/products')
-      .then((res => setState(res.data)))
-  }, [])
+      .then((res => setState(res.data)));
+  }, []);
   return (
     <ProductContext.Provider value={state}>{children}</ProductContext.Provider>
-  )
-}
+  );
+};

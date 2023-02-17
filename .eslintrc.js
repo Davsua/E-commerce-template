@@ -1,27 +1,27 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
     // 'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react/jsx-runtime'
+    'plugin:react/jsx-runtime',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
     indent: ['error', 2],
     quotes: ['error', 'single'],
-    semi: ['error', 'never'],
+    semi: [2, 'always'],
     '@typescript-eslint/no-non-null-assertion': 'warn',
     'linebreak-style': 0,
-    '@typescript-eslint/ban-ts-comment': 'warn'
-  }
-}
+    '@typescript-eslint/ban-ts-comment': 'warn',
+  },
+};

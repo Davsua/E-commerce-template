@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { List } from '@mui/material'
+import styled from '@emotion/styled';
+import { List } from '@mui/material';
 
 export const StyledSearchResult = styled(List)({
   border: '1px solid red',
@@ -15,4 +15,4 @@ export const StyledSearchResult = styled(List)({
     height: '150px',
     objectFit: 'cover'
   }
-})
+});

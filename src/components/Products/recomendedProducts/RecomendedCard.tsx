@@ -1,24 +1,26 @@
 import {
-  Button,
+  Grid,
   Card,
   CardActionArea,
-  CardActions,
-  CardContent,
   CardMedia,
+  CardContent,
   Typography,
+  CardActions,
+  Button,
 } from '@mui/material';
-import Grid from '@mui/material/Grid';
 import { FC, useContext } from 'react';
-import { Product } from '../../interfaces';
-import { ShoppingContext } from '../../context/Shopping/ShoppingContext';
 import { Link } from 'react-router-dom';
+import { Product } from '../../../interfaces';
+//import styles from './RecomendedProduct.module.css';
+import { ShoppingContext } from '../../../context/Shopping/ShoppingContext';
 
 interface Props {
   product: Product;
 }
 
-export const ProductCard: FC<Props> = ({ product }) => {
+export const RecomendedCard: FC<Props> = ({ product }) => {
   const { addProduct } = useContext(ShoppingContext);
+
   return (
     <Grid
       item
@@ -26,7 +28,12 @@ export const ProductCard: FC<Props> = ({ product }) => {
       sm={4}
       md={2.4}
       xl={2}
-      sx={{ padding: '10px', width: '300px' }}
+      sx={{
+        padding: '10px',
+        width: '300px',
+        justifyContent: 'center',
+        margin: 'auto',
+      }}
     >
       <Card
         sx={{ maxWidth: 300 }}
@@ -36,7 +43,6 @@ export const ProductCard: FC<Props> = ({ product }) => {
           borderColor: '#b5b5b5',
         }}
       >
-        {/* CardActionArea: This component wraps children in a single Button, creating a ripple effect when clicked. */}
         <Link
           to={`/details/${product.id}`}
           style={{ textDecoration: 'none', color: 'Black' }}
@@ -67,13 +73,9 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 </Typography>
               </div>
             </CardContent>
-            {/* <CardActions
-            style={{ display: "flex", justifyContent: "space-evenly" }}
-          ></CardActions> */}
           </CardActionArea>
         </Link>
         <CardActions>
-          {/* <Button sx={{ fontSize: "11px" }}>Learn More</Button> */}
           <Button
             variant='contained'
             sx={{
