@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Product } from '../interfaces'
+import { useState } from 'react';
+import { Product } from '../interfaces';
 
 
 export interface ShoppingState {
@@ -8,42 +8,42 @@ export interface ShoppingState {
 
 }
 const INITIAL_STATE: ShoppingState = {
-    isOpenOrder: false,
-    cart: []
-}
+  isOpenOrder: false,
+  cart: []
+};
 const useInitialState =() =>{
 
- const [state, setState] = useState(INITIAL_STATE)
+  const [state, setState] = useState(INITIAL_STATE);
 
- const addProduct = (payload: Product) =>{
+  const addProduct = (payload: Product) =>{
     setState({
       ...state,
       cart: state.cart.includes(payload) ? state.cart : [...state.cart, payload]
-    })
- }
- const deleteProduct = (payload: Product) =>{
-  setState({
-    ...state,
-    cart: state.cart.filter(( items => items.id !== payload.id)) 
-  })
-}
+    });
+  };
+  const deleteProduct = (payload: Product) =>{
+    setState({
+      ...state,
+      cart: state.cart.filter(( items => items.id !== payload.id)) 
+    });
+  };
 
- const toogleOrder = () =>{
-  setState({
-    ...state,
-    isOpenOrder: !state.isOpenOrder,
-  })
+  const toogleOrder = () =>{
+    setState({
+      ...state,
+      isOpenOrder: !state.isOpenOrder,
+    });
 
- }
+  };
 
- return{
+  return{
     state,
     addProduct,
     deleteProduct,
     toogleOrder
- }
+  };
 
-}
+};
 
 
-export default useInitialState
+export default useInitialState;

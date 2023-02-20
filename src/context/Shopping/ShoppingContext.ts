@@ -12,4 +12,4 @@ export interface ShoppingContextProps {
     
 }
 
-export const ShoppingContext = createContext({} as ShoppingContextProps)
+export const ShoppingContext = createContext({} as ShoppingContextProps);

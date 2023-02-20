@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running
 
-- 
+-
 
 ## Deployment 🍃
 
@@ -32,7 +32,8 @@ Please read \*##Create a Code of conduct to make changes to the REPO.
 - **David Suarez** --- [https://github.com/davsua](https://github.com/davsua)
 - **Hernani Bolivar** --- [https://github.com/zagoHyo](https://github.com/zagoHyo)
 - **Santiago Cano** --- [https://github.com/sancg](https://github.com/sancg)
-- **Juan Bedoya** ---
+- **Juan Pablo Bedoya** --- [https://github.com/Juanpabedoyav](https://github.com/Juanpabedoyav)
+
 
 See also the list of [contributors](https://github.com/sancg/starter-pack/contributors) who participated in this project.
 

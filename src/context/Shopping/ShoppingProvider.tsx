@@ -1,5 +1,5 @@
-import useInitialState from '../../hooks/useInitialState'
-import { ShoppingContext } from './ShoppingContext'
+import useInitialState from '../../hooks/useInitialState';
+import { ShoppingContext } from './ShoppingContext';
 
 
 interface ShoppingProviderProps {
@@ -8,11 +8,11 @@ interface ShoppingProviderProps {
 
 
 export const ShoppingProvider = ({children} : ShoppingProviderProps) =>{
-const initialState = useInitialState()
+  const initialState = useInitialState();
 
-    return(
-        <ShoppingContext.Provider value={initialState}>
-            {children}
-        </ShoppingContext.Provider>
-    )
-}
+  return(
+    <ShoppingContext.Provider value={initialState}>
+      {children}
+    </ShoppingContext.Provider>
+  );
+};
